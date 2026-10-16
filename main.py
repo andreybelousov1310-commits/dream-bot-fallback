@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 import os
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 import uvicorn
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -22,7 +22,9 @@ app = FastAPI()
 
 # Змінна для збереження часу останнього пінгу від ПК
 last_ping_time = datetime.now(timezone.utc)
-is_pc_online = True
+# Головна зміна: при стартовому запуску хмара вважає ПК неактивним, 
+# поки не отримає живий пінг (це запобігає миттєвому конфлікту за getUpdates)
+is_pc_online = False
 polling_task = None
 
 
