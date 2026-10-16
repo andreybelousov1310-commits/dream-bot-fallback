@@ -43,7 +43,7 @@ async def run_bot_polling():
     """Запускає опитування Telegram, коли ПК офлайн."""
     try:
         print("Запуск фонового Telegram-бота (режим заглушки)...")
-        await dp.start_polling(bot,, skip_updates=True)
+        await dp.start_polling(bot, skip_updates=True)
     except Exception as e:
         print(f"Помилка в polling: {e}")
 
